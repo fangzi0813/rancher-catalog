@@ -30,11 +30,11 @@ spec:
           livenessProbe:
             httpGet:
               path: /
-              port: http
+              port: catalog
           readinessProbe:
             httpGet:
               path: /
-              port: http
+              port: catalog
           resources:
 {{ toYaml .Values.resources | indent 12 }}
     {{- with .Values.nodeSelector }}
