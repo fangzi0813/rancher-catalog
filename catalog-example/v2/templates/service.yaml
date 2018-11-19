@@ -11,7 +11,6 @@ spec:
   type: {{ .Values.service.type }}
   ports:
     - port: {{ .Values.service.port }}
-      nodePort: 30050
       targetPort: catalog
       protocol: TCP
       name: catalog
