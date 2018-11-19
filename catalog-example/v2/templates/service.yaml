@@ -17,3 +17,12 @@ spec:
   selector:
     app.kubernetes.io/name: {{ include "catalog-example.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
+  {{if eq .Values.service.type "LoadBalancer"}}
+  {{- if .Values.service.LoadBalancerSourceRanges }}
+  loadBalancerSourceRanges:
+  {{ toYaml .Values.service.LoadBalancerSourceRanges | indent 4 }}
+  {{- end }}
+  {{if .Values.service.LoadBalancerIP}}
+  loadBalancerIP: {{.Values.service.LoadBalancerIP}}
+        {{end}}
+        {{end}}

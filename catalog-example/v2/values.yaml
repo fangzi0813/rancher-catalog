@@ -13,8 +13,10 @@ nameOverride: ""
 fullnameOverride: ""
 
 service:
-  type: ClusterIP
+  type: LoadBalancer
   port: 8080
+  LoadBalancerSourceRanges:
+    - 0.0.0.0/0
 
 ingress:
   enabled: true
