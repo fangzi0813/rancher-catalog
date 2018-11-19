@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "catalog-example.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "catalog-example.name" . }}
+    helm.sh/chart: {{ include "catalog-example.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      nodePort: 30050
+      targetPort: catalog
+      protocol: TCP
+      name: catalog
+  selector:
+    app.kubernetes.io/name: {{ include "catalog-example.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
