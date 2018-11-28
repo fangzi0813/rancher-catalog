@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: fangzi/catalog-example
-  tag: v1
+  tag: v2
   pullPolicy: IfNotPresent
 
 nameOverride: ""
@@ -48,3 +48,8 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+persistence:
+  enabled: true
+  accessMode: ReadWriteOnce
+  storageSize: 8Gi
