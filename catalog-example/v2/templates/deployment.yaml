@@ -38,6 +38,9 @@ spec:
           resources:
 {{ toYaml .Values.resources | indent 12 }}
     {{- with .Values.nodeSelector }}
+          volumeMounts:
+            - mountPath: /myvol
+              name: {{ template "catalog-example.fullname" . }}-data
       nodeSelector:
 {{ toYaml . | indent 8 }}
     {{- end }}
@@ -49,3 +52,7 @@ spec:
       tolerations:
 {{ toYaml . | indent 8 }}
     {{- end }}
+      volumes:
+        - name: {{ template "catalog-example.fullname" . }}-data
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistence.existingClaim | default (printf "%s-%s" (include "catalog-example.fullname" .) "data") }}
