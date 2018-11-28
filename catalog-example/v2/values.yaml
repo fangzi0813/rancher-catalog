@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: fangzi/catalog-example
-  tag: v2
+  tag: v3
   pullPolicy: IfNotPresent
 
 nameOverride: ""
